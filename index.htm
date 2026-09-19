@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ShyamHub Music</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-headphones"></i>
+            <span>ShyamHub</span>
+        </div>
+
+        <nav>
+            <a class="active" href="#">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="#search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search
+            </a>
+
+            <a href="#library">
+                <i class="fa-solid fa-book"></i>
+                Your Library
+            </a>
+        </nav>
+
+        <div class="playlist-title">
+            <span>Your Playlists</span>
+            <button onclick="createPlaylist()">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
+
+        <div class="playlist-list">
+            <p>🎵 My Playlist</p>
+            <p>❤️ Liked Songs</p>
+            <p>🔥 Trending</p>
+        </div>
+
+        <div class="sidebar-bottom">
+            <button onclick="openLogin()" class="login-side-btn">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                Login
+            </button>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="navigation">
+                <button onclick="history.back()">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+                <button onclick="history.forward()">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="search-box" id="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="What do you want to play?"
+                    onkeyup="searchSongs()">
+            </div>
+
+            <div class="top-buttons">
+                <button onclick="openSignup()" class="signup-btn">
+                    Sign up
+                </button>
+
+                <button onclick="openLogin()" class="login-btn">
+                    Log in
+                </button>
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <div class="hero">
+
+                <div>
+                    <p class="small-text">WELCOME TO</p>
+
+                    <h1>ShyamHub Music</h1>
+
+                    <p>
+                        Listen to your favourite music,
+                        discover new songs and enjoy your playlist.
+                    </p>
+
+                    <button class="hero-btn" onclick="playFeatured()">
+                        <i class="fa-solid fa-play"></i>
+                        Play Music
+                    </button>
+                </div>
+
+            </div>
+
+
+            <!-- QUICK ACCESS -->
+            <section class="section">
+
+                <div class="section-heading">
+                    <h2>Quick Access</h2>
+                </div>
+
+                <div class="quick-grid">
+
+                    <div class="quick-card">
+                        <div class="quick-icon liked">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+
+                        <span>Liked Songs</span>
+                    </div>
+
+                    <div class="quick-card">
+                        <div class="quick-icon purple">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+
+                        <span>Trending</span>
+                    </div>
+
+                    <div class="quick-card">
+                        <div class="quick-icon green">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+
+                        <span>Recently Played</span>
+                    </div>
+
+                    <div class="quick-card">
+                        <div class="quick-icon orange">
+                            <i class="fa-solid fa-headphones"></i>
+                        </div>
+
+                        <span>Made For You</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SONGS -->
+            <section class="section">
+
+                <div class="section-heading">
+                    <h2>Popular Songs</h2>
+
+                    <button onclick="loadSongs()">
+                        Show all
+                    </button>
+                </div>
+
+                <div id="songsContainer" class="songs-grid">
+
+                    <div class="loading">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        Loading songs...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ALBUMS -->
+            <section class="section">
+
+                <div class="section-heading">
+                    <h2>Popular Albums</h2>
+                </div>
+
+                <div class="album-grid">
+
+                    <div class="album-card">
+                        <img src="https://picsum.photos/300?random=10">
+
+                        <h3>Night Vibes</h3>
+
+                        <p>Relax • Chill • Music</p>
+                    </div>
+
+                    <div class="album-card">
+                        <img src="https://picsum.photos/300?random=11">
+
+                        <h3>Love Hits</h3>
+
+                        <p>Romantic Collection</p>
+                    </div>
+
+                    <div class="album-card">
+                        <img src="https://picsum.photos/300?random=12">
+
+                        <h3>Party Mix</h3>
+
+                        <p>Best Party Songs</p>
+                    </div>
+
+                    <div class="album-card">
+                        <img src="https://picsum.photos/300?random=13">
+
+                        <h3>Chill Beats</h3>
+
+                        <p>Lo-Fi Collection</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- MUSIC PLAYER -->
+<footer class="player">
+
+    <div class="now-playing">
+
+        <img id="playerImage"
+             src="https://picsum.photos/100?random=20">
+
+        <div>
+            <h4 id="playerTitle">Select a song</h4>
+            <p id="playerArtist">ShyamHub Music</p>
+        </div>
+
+        <button onclick="toggleLike()">
+            <i id="likeIcon" class="fa-regular fa-heart"></i>
+        </button>
+
+    </div>
+
+
+    <div class="player-center">
+
+        <div class="controls">
+
+            <button onclick="previousSong()">
+                <i class="fa-solid fa-backward-step"></i>
+            </button>
+
+            <button class="play-button" onclick="togglePlay()">
+                <i id="playIcon" class="fa-solid fa-play"></i>
+            </button>
+
+            <button onclick="nextSong()">
+                <i class="fa-solid fa-forward-step"></i>
+            </button>
+
+        </div>
+
+        <div class="progress-area">
+
+            <span id="currentTime">0:00</span>
+
+            <input
+                type="range"
+                id="progressBar"
+                min="0"
+                max="100"
+                value="0"
+                onchange="changeProgress()">
+
+            <span id="duration">0:00</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="player-right">
+
+        <i class="fa-solid fa-volume-high"></i>
+
+        <input
+            type="range"
+            id="volumeBar"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.8"
+            onchange="changeVolume()">
+
+    </div>
+
+</footer>
+
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
+
+    <div class="auth-box">
+
+        <button class="close" onclick="closeLogin()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="auth-logo">
+            <i class="fa-solid fa-headphones"></i>
+        </div>
+
+        <h2>Login to ShyamHub</h2>
+
+        <p class="auth-subtitle">
+            Continue listening to your favourite music
+        </p>
+
+        <button class="google-btn" onclick="googleLogin()">
+            <i class="fa-brands fa-google"></i>
+            Continue with Google
+        </button>
+
+        <div class="or">
+            <span>OR</span>
+        </div>
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            id="loginEmail"
+            placeholder="Enter Gmail / Email">
+
+        <label>Phone Number</label>
+
+        <input
+            type="tel"
+            id="loginPhone"
+            placeholder="+91 9876543210">
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Password">
+
+        <button class="auth-btn" onclick="loginUser()">
+            Login
+        </button>
+
+        <p class="switch">
+            Don't have an account?
+            <span onclick="switchToSignup()">Sign up</span>
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- SIGNUP MODAL -->
+<div id="signupModal" class="modal">
+
+    <div class="auth-box">
+
+        <button class="close" onclick="closeSignup()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="auth-logo">
+            <i class="fa-solid fa-music"></i>
+        </div>
+
+        <h2>Create Account</h2>
+
+        <p class="auth-subtitle">
+            Join ShyamHub Music today
+        </p>
+
+        <label>Full Name</label>
+
+        <input
+            type="text"
+            id="signupName"
+            placeholder="Your name">
+
+        <label>Gmail / Email</label>
+
+        <input
+            type="email"
+            id="signupEmail"
+            placeholder="example@gmail.com">
+
+        <label>Phone Number</label>
+
+        <input
+            type="tel"
+            id="signupPhone"
+            placeholder="+91 9876543210">
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            id="signupPassword"
+            placeholder="Create password">
+
+        <button class="auth-btn" onclick="signupUser()">
+            Create Account
+        </button>
+
+        <p class="switch">
+            Already have an account?
+            <span onclick="switchToLogin()">Login</span>
+        </p>
+
+    </div>
+
+</div>
+
+
+<audio id="audioPlayer"></audio>
+
+<script src="script.js"></script>
+
+</body>
+</html>
